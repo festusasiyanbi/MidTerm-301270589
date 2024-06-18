@@ -8,3 +8,81 @@
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
 }
+
+body {
+  width: 100vw;
+  height: 100vh;
+  padding: 5px 0;
+}
+button {
+  cursor: pointer;
+}
+.App {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#productForm,
+#signUpForm {
+  height: 50%;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#productForm h1 {
+  margin: 10px 0;
+  color: rgb(15, 15, 50);
+}
+
+label {
+  width: 100%;
+}
+
+input {
+  height: 40px;
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid gray;
+  padding: 0 5px;
+}
+
+input:focus {
+  border: 2px solid gray;
+}
+
+.operations-div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.operations-div button {
+  width: 120px;
+  height: 35px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+#submit-btn {
+  color: rgb(15, 15, 50);
+  background-color: aquamarine;
+}
+
+#cancel-btn {
+  color: rgb(15, 15, 50);
+  background-color: azure;
+}
