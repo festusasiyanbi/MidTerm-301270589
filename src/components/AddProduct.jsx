@@ -18,11 +18,11 @@ const AddProduct = () => {
     const handleSubmit = () => {
         console.log(formData)
         alert(
-            `You have entered the following details: \n
-            Name: ${formData.name}\n
-            Description: ${formData.description}\n
-            Category: ${formData.category}\n
-            Quantity: ${formData.quantity}\n
+           `You have entered the following details: \n
+            Name: ${formData.name}
+            Description: ${formData.description}
+            Category: ${formData.category}
+            Quantity: ${formData.quantity}
             Price: ${formData.price}`
         );
     }
