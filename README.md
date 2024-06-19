@@ -1,70 +1,143 @@
-# Getting Started with Create React App
+# React Forms Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
+This repository contains two React components for managing user sign-up and product addition. These components utilize `react-hook-form` for form handling and validation in the `SignUpUser` component, and traditional state management in the `AddProduct` component.
 
-## Available Scripts
+## Features
+- **SignUpUser Component**: Allows users to sign up with validation and form reset functionality.
+- **AddProduct Component**: Allows users to add new products with form handling and reset functionality.
 
-In the project directory, you can run:
+## Prerequisites
+- Node.js and npm installed on your machine.
 
-### `npm start`
+## Installation
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/yourusername/react-forms-app.git
+    cd react-forms-app
+    ```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2. Install dependencies:
+    ```sh
+    npm install
+    ```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Usage
+1. Start the development server:
+    ```sh
+    npm start
+    ```
 
-### `npm test`
+2. Open your browser and navigate to `http://localhost:3000` to view the application.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Components
 
-### `npm run build`
+### SignUpUser Component
+This component handles user sign-up with form validation using `react-hook-form`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### Code
+```jsx
+import React from 'react';
+import { useForm } from 'react-hook-form';
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+const SignUpUser = () => {
+    const { register, handleSubmit, watch, formState: { errors }, reset } = useForm();
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    const onSubmit = (data) => {
+        console.log(data);
+        alert(
+           `You have entered the following details: \n
+            First Name: ${data.firstName}
+            Last Name: ${data.lastName}
+            Username: ${data.userName}
+            Email: ${data.email}`
+        );
+    };
 
-### `npm run eject`
+    const handleReset = () => {
+        reset();
+    };
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+    const password = watch('password');
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    return (
+        <form id="signUpForm" onSubmit={handleSubmit(onSubmit)}>
+            <h1>React Hook Form</h1>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+            <label htmlFor="firstName">
+                First Name:
+                <input
+                    id="firstName"
+                    {...register('firstName', { required: true })}
+                    placeholder="First Name"
+                />
+                {errors.firstName && <span>This field is required</span>}
+            </label>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+            <label htmlFor="lastName">
+                Last Name:
+                <input
+                    id="lastName"
+                    {...register('lastName', { required: true })}
+                    placeholder="Last Name"
+                />
+                {errors.lastName && <span>This field is required</span>}
+            </label>
 
-## Learn More
+            <label htmlFor="userName">
+                User Name:
+                <input
+                    id="userName"
+                    {...register('userName', { required: true })}
+                    placeholder="User Name"
+                />
+                {errors.userName && <span>This field is required</span>}
+            </label>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+            <label htmlFor="email">
+                Email:
+                <input
+                    id="email"
+                    {...register('email', {
+                        required: true,
+                        pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+                    })}
+                    placeholder="Email"
+                />
+                {errors.email && <span>Enter a valid email</span>}
+            </label>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+            <label htmlFor="password">
+                Password:
+                <input
+                    id="password"
+                    {...register('password', { required: true })}
+                    type="password"
+                    placeholder="Password"
+                />
+                {errors.password && <span>This field is required</span>}
+            </label>
 
-### Code Splitting
+            <label htmlFor="confirmPassword">
+                Confirm Password:
+                <input
+                    id="confirmPassword"
+                    {...register('confirmPassword', {
+                        required: true,
+                        validate: value => value === password || "Passwords do not match"
+                    })}
+                    type="password"
+                    placeholder="Confirm Password"
+                />
+                {errors.confirmPassword && <span>{errors.confirmPassword.message}</span>}
+            </label>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+            <div className="operations-div">
+                <button type="submit" id='submit-btn'>Submit</button>
+                <button type="button" id='reset-btn' onClick={handleReset}>RESET</button>
+            </div>
+        </form>
+    );
+};
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+export default SignUpUser;
