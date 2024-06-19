@@ -26,7 +26,7 @@ const AddProduct = () => {
             Price: ${formData.price}`
         );
     }
-    const handleCancel = () => {
+    const handleReset = () => {
         setFormData({
             name: '',
             description: '',
@@ -85,7 +85,7 @@ const AddProduct = () => {
             </label>
             <div className='operations-div'>
                 <button id='submit-btn' onClick={handleSubmit}>SUBMIT</button>
-                <button id='cancel-btn'onClick={handleCancel}>RESET</button>
+                <button id='reset-btn'onClick={handleReset}>RESET</button>
             </div>
         </form>
     )
