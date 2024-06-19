@@ -6,7 +6,7 @@ const SignUpUser = () => {
     const onSubmit = (data) => {
         console.log(data);
         alert(
-            `You have entered the following details: \n
+           `You have entered the following details: \n
             First Name: ${data.firstName}
             Last Name: ${data.lastName}
             Username: ${data.userName}
